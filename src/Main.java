@@ -21,12 +21,21 @@ public class Main {
 
     private static void verifyPOJOtoJSON() {
         System.out.println("verifyPOJOtoJSON");
+        final String filename = "patient.json";
         Gson g = getDefaultGson();
+        // create a Patient instance from an external JSON text file
         try {
-            File f = new File("patient.json");
-            FileReader fr = new FileReader(f);
-            Patient p = g.fromJson(fr, Patient.class);
-            System.out.println(p);
+            File f = new File(filename);
+            if (f.exists()) {
+                FileReader fr = new FileReader(f);
+                Patient p = g.fromJson(fr, Patient.class);
+                System.out.println(p);
+            } else {
+                String msg = String.format("File %s not found! Expected at %s.%n", filename, f.getAbsolutePath());
+                System.err.println(msg);
+                throw new FileNotFoundException(msg);
+            }
+
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -41,19 +50,28 @@ public class Main {
         System.out.println(sb);
     }
 
-    private static Gson getDefaultGson(){
+    private static Gson getDefaultGson() {
+        var customAdapter = getZonedDateTimeAdapter();
         return new GsonBuilder().setPrettyPrinting()
-                .registerTypeAdapter(ZonedDateTime.class, new TypeAdapter<ZonedDateTime>() {
-                    @Override
-                    public void write(JsonWriter out, ZonedDateTime value) throws IOException {
-                        out.value(value.toString());
-                    }
+                                .registerTypeAdapter(ZonedDateTime.class, customAdapter).create();
+    }
 
-                    @Override
-                    public ZonedDateTime read(JsonReader in) throws IOException {
-                        return ZonedDateTime.parse(in.nextString());
-                    }
-                }).create();
+    private static TypeAdapter getZonedDateTimeAdapter() {
+        var adatper = new TypeAdapter<ZonedDateTime>() {
+
+            @Override
+            public void write(JsonWriter out, ZonedDateTime value) throws IOException {
+                out.value(value.toString());
+            }
+
+            @Override
+            public ZonedDateTime read(JsonReader in) throws IOException {
+                return ZonedDateTime.parse(in.nextString());
+            }
+        };
+
+        return adatper;
+
     }
 
     /**
