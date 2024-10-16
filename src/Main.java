@@ -51,28 +51,11 @@ public class Main {
     }
 
     private static Gson getDefaultGson() {
-        var customAdapter = getZonedDateTimeAdapter();
+        ZonedDateTimeTypeAdapter customAdapter = new ZonedDateTimeTypeAdapter(); // getZonedDateTimeAdapter();
         return new GsonBuilder().setPrettyPrinting()
                                 .registerTypeAdapter(ZonedDateTime.class, customAdapter).create();
     }
 
-    private static TypeAdapter getZonedDateTimeAdapter() {
-        var adatper = new TypeAdapter<ZonedDateTime>() {
-
-            @Override
-            public void write(JsonWriter out, ZonedDateTime value) throws IOException {
-                out.value(value.toString());
-            }
-
-            @Override
-            public ZonedDateTime read(JsonReader in) throws IOException {
-                return ZonedDateTime.parse(in.nextString());
-            }
-        };
-
-        return adatper;
-
-    }
 
     /**
      * get the java version that is running the current program
@@ -83,6 +66,5 @@ public class Main {
         Runtime.Version rtv = Runtime.version();
         return String.format("%s.%s.%s.%s", rtv.feature(), rtv.interim(), rtv.update(), rtv.patch());
     }
-
 
 }
