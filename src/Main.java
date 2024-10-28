@@ -14,13 +14,17 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.format("Java version: %s%n", getJavaVersion());
-        printSeparator();
 
+        printSeparator();
         verifyPOJOtoJSON();
     }
 
+    /**
+     * Verify we can convert a (P)lain (O)ld (J)ava (O)bject to (J)ava (S)cript (O)bject (N)otation
+     * using Google's GSON library.
+     */
     private static void verifyPOJOtoJSON() {
-        System.out.println("verifyPOJOtoJSON");
+        System.out.format("%n%s%n", getMethodName(1));
         final String filename = "patient.json";
         Gson g = getDefaultGson();
         // create a Patient instance from an external JSON text file
@@ -50,10 +54,13 @@ public class Main {
         System.out.println(sb);
     }
 
+    /**
+     * @return an instance Gson that is customized to handle ZonedDateTime fields.
+     */
     private static Gson getDefaultGson() {
         ZonedDateTimeTypeAdapter customAdapter = new ZonedDateTimeTypeAdapter(); // getZonedDateTimeAdapter();
         return new GsonBuilder().setPrettyPrinting()
-                                .registerTypeAdapter(ZonedDateTime.class, customAdapter).create();
+                .registerTypeAdapter(ZonedDateTime.class, customAdapter).create();
     }
 
 
@@ -66,5 +73,14 @@ public class Main {
         Runtime.Version rtv = Runtime.version();
         return String.format("%s.%s.%s.%s", rtv.feature(), rtv.interim(), rtv.update(), rtv.patch());
     }
+
+    public static String getMethodName(final int depth) {
+        final StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+
+        //System. out.println(ste[ste.length-depth].getClassName()+"#"+ste[ste.length-depth].getMethodName());
+        // return ste[ste.length - depth].getMethodName();  //Wrong, fails for depth = 0
+        return ste[ste.length - 1 - depth].getMethodName(); //Thank you Tom Tresansky
+    }
+
 
 }
