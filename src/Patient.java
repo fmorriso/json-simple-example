@@ -1,10 +1,6 @@
-//import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 
 public class Patient {
 

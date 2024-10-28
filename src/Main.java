@@ -39,12 +39,12 @@ public class Main {
                 System.err.println(msg);
                 throw new FileNotFoundException(msg);
             }
-
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         printSeparator();
     }
+
 
     private static void printSeparator() {
         StringBuilder sb = new StringBuilder();
@@ -55,7 +55,7 @@ public class Main {
     }
 
     /**
-     * @return an instance Gson that is customized to handle ZonedDateTime fields.
+     * @return an instance of Gson that is customized to handle ZonedDateTime fields.
      */
     private static Gson getDefaultGson() {
         ZonedDateTimeTypeAdapter customAdapter = new ZonedDateTimeTypeAdapter(); // getZonedDateTimeAdapter();
