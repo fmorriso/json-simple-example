@@ -58,8 +58,9 @@ public class Main {
      * @return an instance of Gson that is customized to handle ZonedDateTime fields.
      */
     private static Gson getDefaultGson() {
-        ZonedDateTimeTypeAdapter customAdapter = new ZonedDateTimeTypeAdapter(); // getZonedDateTimeAdapter();
-        return new GsonBuilder().setPrettyPrinting()
+        ZonedDateTimeTypeAdapter customAdapter = new ZonedDateTimeTypeAdapter();
+        return new GsonBuilder()
+                .setPrettyPrinting()
                 .registerTypeAdapter(ZonedDateTime.class, customAdapter).create();
     }
 

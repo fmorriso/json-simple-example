@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.time.ZonedDateTime;
 
 /**
- * A custom GSON Type Adapter for reading and writing fields of type ZonedDateTime to/from JSON.
+ * A custom Google GSON Type Adapter for reading and writing fields of type ZonedDateTime to/from JSON.
  */
 public class ZonedDateTimeTypeAdapter extends TypeAdapter<ZonedDateTime> {
 
