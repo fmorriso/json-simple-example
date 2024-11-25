@@ -76,21 +76,7 @@ public class Main {
     public static Path findPathFirst(Path base, String targetFileName) throws IOException {
         final Path[] result = {null}; // To store the result as a shared variable
 
-        Files.walkFileTree(base, new SimpleFileVisitor<>() {
-            @Override
-            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-                if (file.getFileName().toString().equals(targetFileName)) {
-                    result[0] = file; // Store the found file
-                    return FileVisitResult.TERMINATE; // Stop traversal once found
-                }
-                return FileVisitResult.CONTINUE; // Continue if not found
-            }
-
-            @Override
-            public FileVisitResult visitFileFailed(Path file, IOException exc) {
-                return FileVisitResult.CONTINUE; // Skip unreadable files
-            }
-        });
+        Files.walkFileTree(base, new FileUtils(targetFileName, result));
 
         return result[0]; // Return the found file, or null if not found
     }
@@ -131,6 +117,7 @@ public class Main {
         // return ste[ste.length - depth].getMethodName();  //Wrong, fails for depth = 0
         return ste[ste.length - 1 - depth].getMethodName(); //Thank you Tom Tresansky
     }
+
 
 
 }
