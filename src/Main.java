@@ -7,11 +7,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.time.ZonedDateTime;
-import java.util.stream.Stream;
 //
-import java.io.IOException;
 import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
 
 public class Main {
 
@@ -38,7 +35,7 @@ public class Main {
 
         Path foundFile = null;
         try {
-            foundFile = findFirstOccurrence(baseDir, targetFileName);
+            foundFile = findPathFirst(baseDir, targetFileName);
             if (foundFile != null) { // .fs.defaultDirectory or .path
                 // System.out.println("File found: " + foundFile.toAbsolutePath());
                 Path realPath = foundFile.toRealPath();
@@ -69,12 +66,17 @@ public class Main {
         printSeparator();
     }
 
-    
 
-    public static Path findFirstOccurrence(Path baseDir, String targetFileName) throws IOException {
+    /** Find the first occurrence of the path to a file from a base directory.
+     * @param base - the base directory path from where the search begins.
+     * @param targetFileName - the target file name to look for.
+     * @return - Path to where the file was found or null if not found.
+     * @throws IOException - the exception thrown if anything goes wrong during the search.
+     */
+    public static Path findPathFirst(Path base, String targetFileName) throws IOException {
         final Path[] result = {null}; // To store the result as a shared variable
 
-        Files.walkFileTree(baseDir, new SimpleFileVisitor<>() {
+        Files.walkFileTree(base, new SimpleFileVisitor<>() {
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
                 if (file.getFileName().toString().equals(targetFileName)) {
