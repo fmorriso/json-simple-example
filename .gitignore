@@ -2,6 +2,13 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+.idea/
+.idea/**
+.idea/misc.xml
+.idea/workspace.xml
+workspace.xml
+.idea/**/workspace.xml
+*.iml
 
 ### Eclipse ###
 .apt_generated

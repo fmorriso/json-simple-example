@@ -20,7 +20,7 @@ public class DateTimeUtilities {
 
     /**
      * Return a ZoneDateTime instance from any reasonably formatted ISO 8601 date or date/time
-     * @param value - a string represenation of an ISO 8601 date, date/time or reasonable facsimile.
+     * @param value - a string representation of an ISO 8601 date, date/time or reasonable facsimile.
      * @return - an instance of ZonedDateTime without tht eim
      */
     public static ZonedDateTime getZonedDateTime(String value) {

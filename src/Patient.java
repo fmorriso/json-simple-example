@@ -19,6 +19,18 @@ public class Patient {
     /////////////////////////////////////////////////////////
     // Constructors
     /////////////////////////////////////////////////////////
+
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     * @param dateOfBirth
+     * @param address
+     * @param city
+     * @param state
+     * @param zip
+     * @param phone
+     */
     public Patient(String firstName, String lastName, String dateOfBirth, String address, String city, String state, String zip, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
