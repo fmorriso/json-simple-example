@@ -12,12 +12,13 @@ An example of using Google JSON library GSON to read/write JSON structures from/
 
 ## Change History
 
-| Date       | Description                                                                  |
-|:-----------|:-----------------------------------------------------------------------------|
-| 2024-10-15 | Initial creation                                                             |
-| 2024-10-16 | Refactor code to extract ZonedDateTimeTypeAdaptor into a separate class file |
-| 2024-11-25 | suppress saving .idea files and directories to GitHub                        |
- | 2024-11-25 | Add lib directory and .classpath to allow VSCode to find and usg GSON library |
+| Date       | Description                                                                   |
+|:-----------|:------------------------------------------------------------------------------|
+| 2024-10-15 | Initial creation                                                              |
+| 2024-10-16 | Refactor code to extract ZonedDateTimeTypeAdaptor into a separate class file  |
+| 2024-11-25 | suppress saving .idea files and directories to GitHub                         |
+| 2024-11-25 | Add lib directory and .classpath to allow VSCode to find and usg GSON library |
+| 2024-11-25 | Extract FileUtil class into separate .java file                               |
 
 
 ## References
