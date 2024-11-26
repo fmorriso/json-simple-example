@@ -27,3 +27,4 @@ An example of using Google JSON library GSON to read/write JSON structures from/
 * [File Matcher Example](https://www.baeldung.com/java-files-match-wildcard-strings)
 * [File Visitor Example ](https://www.demo2s.com/java/java-filevisitor-tutorial-with-examples.html)
 * [Walking the file tree](https://docs.oracle.com/javase/tutorial/essential/io/walk.html)
+* [File File Example](https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/essential/io/examples/Find.java)
