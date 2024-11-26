@@ -25,3 +25,4 @@ An example of using Google JSON library GSON to read/write JSON structures from/
 * [Google GSON User Guide](https://github.com/google/gson/blob/main/UserGuide.md)
 * [Google GSON GitHub Repo](https://github.com/google/gson)
 * [File Matcher Example](https://www.baeldung.com/java-files-match-wildcard-strings)
+* [File Visitor Example](https://www.demo2s.com/java/java-filevisitor-tutorial-with-examples.html)
