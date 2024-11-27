@@ -37,12 +37,7 @@ public class Main {
         final String targetFileName = "patient.json";
         final String basePath = ".";
         final Path baseDir = Paths.get(".");
-
-        Optional<Path> result = Optional.ofNullable(findPathFirst(baseDir, targetFileName));
-        Path foundFile = null;
-        if(result.isPresent()) {
-            foundFile = result.get().toAbsolutePath();
-        }
+        Path foundFile = FileFinder.findFile(targetFileName, baseDir);
 
         Gson g = getDefaultGson();
         // create a Patient instance from an external JSON text file
@@ -61,21 +56,6 @@ public class Main {
             throw new RuntimeException(e);
         }
         printSeparator();
-    }
-
-
-    /** Find the first occurrence of the path to a file from a base directory.
-     * @param base - the base directory path from where the search begins.
-     * @param targetFileName - the target file name to look for.
-     * @return - Path to where the file was found or null if not found.
-     * @throws IOException - the exception thrown if anything goes wrong during the search.
-     */
-    public static Path findPathFirst(Path base, String targetFileName) throws IOException {
-        final Path[] result = {null}; // To store the result as a shared variable
-
-        Files.walkFileTree(base, new FileUtils(targetFileName, result));
-
-        return result[0]; // Return the found file, or null if not found
     }
 
     private static void printSeparator() {
