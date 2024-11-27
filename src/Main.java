@@ -11,12 +11,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 //
 import java.time.ZonedDateTime;
+import java.util.Optional;
 //
 
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.format("Java version: %s%n", getJavaVersion());
 
         printSeparator();
@@ -27,7 +28,7 @@ public class Main {
      * Verify we can convert a (P)lain (O)ld (J)ava (O)bject to (J)ava (S)cript (O)bject (N)otation
      * using Google's GSON library.
      */
-    private static void verifyPOJOtoJSON() {
+    private static void verifyPOJOtoJSON() throws IOException {
         System.out.format("%n%s%n", getMethodName(1));
 
         Path currentDir = Paths.get("").toAbsolutePath();
@@ -35,26 +36,18 @@ public class Main {
 
         final String targetFileName = "patient.json";
         final String basePath = ".";
-        final Path baseDir = Paths.get(".");        
+        final Path baseDir = Paths.get(".");
 
+        Optional<Path> result = Optional.ofNullable(findPathFirst(baseDir, targetFileName));
         Path foundFile = null;
-        try {
-            foundFile = findPathFirst(baseDir, targetFileName);
-            if (foundFile != null) { // .fs.defaultDirectory or .path
-                // System.out.println("File found: " + foundFile.toAbsolutePath());
-                Path realPath = foundFile.toRealPath();
-                System.out.format("Real path: %s%n",realPath);
-            } else {
-                System.out.println("File not found");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(result.isPresent()) {
+            foundFile = result.get().toAbsolutePath();
         }
 
         Gson g = getDefaultGson();
         // create a Patient instance from an external JSON text file
         try {
-            File f = new File(foundFile.toUri());
+            File f = new File(foundFile.toRealPath().toString());
             if (f.exists()) {
                 FileReader fr = new FileReader(f);
                 Patient p = g.fromJson(fr, Patient.class);
