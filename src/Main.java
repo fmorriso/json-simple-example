@@ -59,11 +59,7 @@ public class Main {
     }
 
     private static void printSeparator() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 80; i++) {
-            sb.append("=");
-        }
-        System.out.println(sb);
+        System.out.println("=".repeat(80));
     }
 
     /**
