@@ -6,12 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 //
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 //
 import java.time.ZonedDateTime;
-import java.util.Optional;
+import java.util.Properties;
 //
 
 
@@ -19,9 +18,26 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         System.out.format("Java version: %s%n", getJavaVersion());
+        System.out.format("GSON version: %s%n", getGSONversion() );
+        System.out.format("Program execution began in: %s%n", FileUtilities.getCurrentDirectory().toString());
 
         printSeparator();
         verifyPOJOtoJSON();
+    }
+
+    private static String getGSONversion() {
+        String version = "unknown";
+        try {
+            Properties properties = new Properties();
+            properties.load(Main.class.getClassLoader()
+                    .getResourceAsStream("META-INF/maven/com.google.code.gson/gson/pom.properties"));
+
+            version = properties.getProperty("version");
+
+        } catch (IOException | NullPointerException e) {
+            version = "unknown";
+        }
+        return version;
     }
 
     /**
@@ -31,13 +47,13 @@ public class Main {
     private static void verifyPOJOtoJSON() throws IOException {
         System.out.format("%n%s%n", getMethodName(1));
 
-        Path currentDir = Paths.get("").toAbsolutePath();
+        Path currentDir = FileUtilities.getCurrentDirectory();
         System.out.format("Current working directory: %s%n",currentDir);
 
         final String targetFileName = "patient.json";
         final String basePath = ".";
         final Path baseDir = Paths.get(".");
-        Path foundFile = FileFinder.findFile(targetFileName, baseDir);
+        Path foundFile = FileUtilities.findFile(targetFileName, baseDir);
 
         Gson g = getDefaultGson();
         // create a Patient instance from an external JSON text file

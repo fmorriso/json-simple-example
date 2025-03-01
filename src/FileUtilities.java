@@ -2,10 +2,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Stream;
 
-public class FileFinder {
+public class FileUtilities {
 
     /** Find the first occurrance of a file somewhere within the specified starting directory
      * or one of its subdirectories.
@@ -23,12 +21,27 @@ public class FileFinder {
         return foundFile;
     }
 
-    private static Path findPathFirst(Path base, String targetFileName) throws IOException {
+    /** Find a file from a known starting directory
+     * @param base - The starting path from which to begin searching.
+     * @param targetFileName - filename
+     * @return - Path to where the file was found or null if not found.
+     * @throws IOException
+     */
+    public static Path findPathFirst(Path base, String targetFileName) throws IOException {
         final Path[] result = {null}; // To store the result as a shared variable
 
         Files.walkFileTree(base, new FileUtils(targetFileName, result));
 
         return result[0]; // Return the found file, or null if not found
+    }
+
+
+    /** Return the path to where the current Java program began execution.
+     * @return Path instance
+     */
+    public static Path getCurrentDirectory() {
+        String workingDir = System.getProperty("user.dir");
+        return Path.of(workingDir);
     }
 
 
