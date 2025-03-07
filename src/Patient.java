@@ -16,10 +16,8 @@ public class Patient {
     private String zip;
     private String phone;
 
-    /////////////////////////////////////////////////////////
-    // Constructors
-    /////////////////////////////////////////////////////////
 
+    // Constructors
     /**
      *
      * @param firstName
@@ -43,8 +41,6 @@ public class Patient {
         this.phone = phone;
     }
 
-    // prevent creation of uninitialized instances
-    @SuppressWarnings("unused")
     private Patient() { /* prevent uninitialized instances */  }
 
     // Getters
