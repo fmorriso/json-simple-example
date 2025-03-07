@@ -4,7 +4,7 @@ import java.time.temporal.ChronoUnit;
 
 public class Patient {
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter DATE_OF_BIRTH_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     // Fields
     private String firstName;
@@ -47,7 +47,7 @@ public class Patient {
     public String getFirstName() {return firstName; }
     public String getLastName() {return lastName; }
     public ZonedDateTime getDateOfBirth() { return dateOfBirth; }
-    public String getDateOfBirthString() { return dateOfBirth.format(DATE_TIME_FORMATTER); }
+    public String getDateOfBirthString() { return dateOfBirth.format(DATE_OF_BIRTH_FORMATTER); }
     public String getAddress() { return address; }
     public String getCity() { return city; }
     public String getState() { return state; }
