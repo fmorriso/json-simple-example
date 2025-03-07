@@ -1,14 +1,12 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-//
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-//
 import java.nio.file.Path;
 import java.nio.file.Paths;
-//
 import java.time.ZonedDateTime;
 import java.util.Properties;
 //
@@ -18,8 +16,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         System.out.format("Java version: %s%n", getJavaVersion());
-        System.out.format("GSON version: %s%n", getGSONversion() );
-        System.out.format("Program execution began in: %s%n", FileUtilities.getCurrentDirectory().toString());
+        System.out.format("GSON version: %s%n", getGSONversion());
+        System.out.format("Program execution began in: %s%n", FileUtilities.getCurrentDirectory());
 
         printSeparator();
         verifyPOJOtoJSON();
@@ -48,7 +46,7 @@ public class Main {
         System.out.format("%n%s%n", getMethodName(1));
 
         Path currentDir = FileUtilities.getCurrentDirectory();
-        System.out.format("Current working directory: %s%n",currentDir);
+        System.out.format("Current working directory: %s%n", currentDir);
 
         final String targetFileName = "patient.json";
         final String basePath = ".";
@@ -106,7 +104,6 @@ public class Main {
         // return ste[ste.length - depth].getMethodName();  //Wrong, fails for depth = 0
         return ste[ste.length - 1 - depth].getMethodName(); //Thank you Tom Tresansky
     }
-
 
 
 }

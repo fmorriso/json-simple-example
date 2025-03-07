@@ -1,15 +1,16 @@
 # Google GSON Example
 
-An example of using Google JSON library GSON to read/write JSON structures from/to the local file system.
+An example of using Google JSON library GSON to read/write Java Plain Old Java Objects (POJO's)
+to/from JSON structures from/to the local file system.
 
 ## Tools Used
 
-| Tool     |  Version |
-|:---------|---------:|
-| Java     |   23.0.2 |
-| IntelliJ | 2024.3.4 |
-| VSCode   |   1.97.2 |
-| GSON     |   2.12.1 |
+| Tool     |    Version |
+|:---------|-----------:|
+| Java     |     23.0.2 |
+| IntelliJ | 2024.3.4.1 |
+| VSCode   |     1.98.0 |
+| GSON     |     2.12.1 |
 
 ## Change History
 
@@ -22,6 +23,7 @@ An example of using Google JSON library GSON to read/write JSON structures from/
 | 2024-11-25 | Extract FileUtil class into separate .java file                               |
 | 2025-02-01 | Verify code runs with Java 23.0.2                                             |
 | 2025-03-01 | Refactor and upgrade to IntelliJ 2024.3.4 and GSON 2.12.1                     |
+| 2025-03-07 | Verify program runs with latest IntelliJ and VSCode                           |
 
 ## References
 
